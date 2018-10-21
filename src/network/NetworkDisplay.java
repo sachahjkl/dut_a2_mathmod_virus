@@ -23,7 +23,7 @@ public class NetworkDisplay {
 
 	public NetworkDisplay(Network n, String title, int cw) {
 		this.f = new JFrame(title);
-		int w = n.width() * (cw + 1) - 10, h = n.height() * (cw + 1) - 10;
+		int w = n.width() * (cw + 1) + 5, h = n.height() * (cw + 1) ;
 		int rw = w >= 250 ? w : 250;
 		this.f.setPreferredSize(new Dimension(rw, h+100));
 		this.f.setBackground(BACK_COLOR);
@@ -39,8 +39,8 @@ public class NetworkDisplay {
 				refresh();
 			}
 		});
-		this.start.setBounds(2, n.height() * (cw + 1) + 5, 70, 30);
-		this.stop.setBounds(82, n.height() * (cw + 1) + 5, 70, 30);
+		this.start.setBounds(4, n.height() * (cw + 1) + 5, 70, 30);
+		this.stop.setBounds(84, n.height() * (cw + 1) + 5, 70, 30);
 		this.start.setFocusPainted(false);
 		this.stop.setFocusPainted(false);
 		this.start.setBackground(new Color(59,89,182));
@@ -50,7 +50,7 @@ public class NetworkDisplay {
 		this.start.setForeground(Color.white);
 		this.stop.setForeground(Color.white);
 		this.l.setForeground(Color.white);
-		this.l.setBounds(2, n.height() * (cw + 1) + 40, 140, 20);
+		this.l.setBounds(4, n.height() * (cw + 1) + 40, 140, 20);
 	}
 
 	public void init() {
@@ -87,7 +87,6 @@ public class NetworkDisplay {
 
 	public void display() {
 		this.init();
-		this.t.start();
 	}
 
 }
