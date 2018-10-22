@@ -8,8 +8,8 @@ public class Main {
 	public static void main(String[] args) {
 		final int w = 100, h = 100;
 		// final int duration = 1000; // durée en min
-		Network n = new Network(w, h, 60, 5);
-		NetworkDisplay nd = new NetworkDisplay(n, "Affichage de l'évolution de l'infection", 8);
+		Network n = new Network(w, h, 180, 1, 100);
+		NetworkDisplay nd = new NetworkDisplay(n, "Affichage de l'évolution de l'infection", 8, 10);
 		n.insertVirusRandomly();
 		nd.display();
 	}

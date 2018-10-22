@@ -6,18 +6,19 @@ import java.util.Random;
 public class Network {
 	private Computer[][] cotab;
 	private int timer;
-	private int PATCH_START, PATCH_INTERVAL; 
+	private int PATCH_START, PATCH_INTERVAL;
 
-	public Network(int w, int h, int ps, int pi) {
-		this.cotab = new Computer[h][w];
+	public Network(int witdh, int height, int patch_start, int patch_int, int delayInfection) {
+		this.cotab = new Computer[height][witdh];
 		for (int i = 0; i < cotab.length; i++) {
 			for (int j = 0; j < cotab[0].length; j++) {
 				cotab[i][j] = new Computer(i, j);
 			}
 		}
+		Computer.setDelayInfection(delayInfection);
 		this.timer = 0;
-		this.PATCH_INTERVAL = pi;
-		this.PATCH_START = ps;
+		this.PATCH_INTERVAL = patch_int;
+		this.PATCH_START = patch_start;
 	}
 
 	public Computer getComputer(int i, int j) {
@@ -39,7 +40,7 @@ public class Network {
 	public void incrementTimer() {
 		++this.timer;
 	}
-	
+
 	public int getTimer() {
 		return this.timer;
 	}
@@ -60,11 +61,33 @@ public class Network {
 		int j = r.nextInt(this.width());
 		this.insertVirusAt(i, j);
 	}
+	
+	public void insertVirusRandomlyNoRepeat() {
+		Random r = new Random();
+		int i = r.nextInt(this.height());
+		int j = r.nextInt(this.width());
+		while(this.getComputer(i, j).isInfected()) {
+			i = r.nextInt(this.height());
+			j = r.nextInt(this.width());
+		}
+		this.insertVirusAt(i, j);
+	}
 
 	public void applyPatchRandomly() {
 		Random r = new Random();
 		int i = r.nextInt(this.height());
 		int j = r.nextInt(this.width());
+		this.applyPatchAt(i, j);
+	}
+	
+	public void applyPatchRandomlyNoRepeat() {
+		Random r = new Random();
+		int i = r.nextInt(this.height());
+		int j = r.nextInt(this.width());
+		while(this.getComputer(i, j).isPatched()) {
+			i = r.nextInt(this.height());
+			j = r.nextInt(this.width());
+		}
 		this.applyPatchAt(i, j);
 	}
 
@@ -75,6 +98,8 @@ public class Network {
 					c.infect(this, timer);
 			}
 		}
+		 if (timer % 100 == 0)
+			 insertVirusRandomly();
 		if (timer >= PATCH_START && timer % PATCH_INTERVAL == 0)
 			this.applyPatchRandomly();
 		this.incrementTimer();

@@ -21,26 +21,26 @@ public class NetworkDisplay {
 	private JLabel l;
 	private static final Color BACK_COLOR = new Color(50, 54, 57);
 
-	public NetworkDisplay(Network n, String title, int cw) {
+	public NetworkDisplay(Network n, String title, int cWidth, int timer_delay) {
 		this.f = new JFrame(title);
-		int w = n.width() * (cw + 1) + 5, h = n.height() * (cw + 1) ;
+		int w = n.width() * (cWidth + 1) + 5, h = n.height() * (cWidth + 1) ;
 		int rw = w >= 250 ? w : 250;
 		this.f.setPreferredSize(new Dimension(rw, h+100));
 		this.f.setBackground(BACK_COLOR);
-		this.p = new NetworkPanel(cw, n);
+		this.p = new NetworkPanel(cWidth, n);
 		this.n = n;
 		this.l = new JLabel("minutes écoulées : " + n.getTimer());
 		this.start = new JButton("Start");
 		this.stop = new JButton("Stop");
-		this.t = new Timer(10, new ActionListener() {
+		this.t = new Timer(timer_delay, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				n.batchVirusPatch();
 				refresh();
 			}
 		});
-		this.start.setBounds(4, n.height() * (cw + 1) + 5, 70, 30);
-		this.stop.setBounds(84, n.height() * (cw + 1) + 5, 70, 30);
+		this.start.setBounds(4, n.height() * (cWidth + 1) + 5, 70, 30);
+		this.stop.setBounds(84, n.height() * (cWidth + 1) + 5, 70, 30);
 		this.start.setFocusPainted(false);
 		this.stop.setFocusPainted(false);
 		this.start.setBackground(new Color(59,89,182));
@@ -50,7 +50,7 @@ public class NetworkDisplay {
 		this.start.setForeground(Color.white);
 		this.stop.setForeground(Color.white);
 		this.l.setForeground(Color.white);
-		this.l.setBounds(4, n.height() * (cw + 1) + 40, 140, 20);
+		this.l.setBounds(4, n.height() * (cWidth + 1) + 40, 160, 20);
 	}
 
 	public void init() {
