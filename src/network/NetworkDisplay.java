@@ -95,8 +95,8 @@ public class NetworkDisplay {
 		this.save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String file_name = "./stats/NetworkRecord_"
-						+ new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + ".txt";
+				String file_name = "./stats/stats_"
+						+ new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + ".log";
 				PrintWriter pw = null;
 				try {
 
