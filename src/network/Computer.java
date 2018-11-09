@@ -66,6 +66,7 @@ public class Computer {
 
 	public void patch() {
 		this.patched = true;
+		this.infected = false;
 	}
 
 	public void infect() {

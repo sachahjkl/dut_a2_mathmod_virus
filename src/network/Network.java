@@ -6,7 +6,7 @@ import java.util.Random;
 public class Network {
 	private Computer[][] cotab;
 	private int timer;
-	private int PATCH_START, PATCH_INTERVAL; 
+	private int PATCH_START, PATCH_INTERVAL;
 
 	public Network(int w, int h, int ps, int pi) {
 		this.cotab = new Computer[h][w];
@@ -39,7 +39,7 @@ public class Network {
 	public void incrementTimer() {
 		++this.timer;
 	}
-	
+
 	public int getTimer() {
 		return this.timer;
 	}
@@ -88,5 +88,17 @@ public class Network {
 			}
 		}
 		return c;
+	}
+
+	public int[] getStats() {
+		int n = 0, i = 0, p = 0;
+		for (int j = 0; j < this.height(); j++) {
+			for (int k = 0; k < this.width(); k++) {
+				n += !this.cotab[j][k].isInfected() && !this.cotab[j][k].isPatched() ? 1: 0;
+				i += this.cotab[j][k].isInfected() ? 1: 0;
+				p += this.cotab[j][k].isPatched() ? 1: 0;
+			}
+		}
+		return new int[] {n,i,p} ;
 	}
 }
