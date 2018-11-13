@@ -1,0 +1,8 @@
+name: "dut_a2_mathmod_virus"
+description: "Projet propagation virus\r\nSwing"
+topics: []
+homepage: ""
+source:
+  provider: gitlab
+  namespace: "sachahjkl"
+  path: "sachahjkl/dut_a2_mathmod_virus"
