@@ -8,7 +8,7 @@ public class Computer {
 	private int lastInfection;
 	private int i;
 	private int j;
-	private static final int delay = 30;
+	private static final int delay = 10;
 	private static final Color C_PATCHED = new Color(76, 175, 80);
 	private static final Color C_INFECTED = new Color(213, 0, 0);
 	private static final Color C_NEUTRAL = new Color(245, 245, 245);
