@@ -17,28 +17,31 @@ public class Main {
 		// final int duration = 1000; // durée en min
 		Network n = new Network(w, h, 60, 5);
 		n.insertVirusRandomly();
-		NetworkDisplay nd = new NetworkDisplay(n, "Affichage de l'évolution de l'infection", 8);
-		nd.display();
-//		ArrayList<int[]> logCom = new ArrayList<>();
-//		int[] stats = n.getStats();
-//		logCom.add(stats);
-//		while(stats[0]!= 0) {
-//			n.batchVirusPatch();
-//			stats = n.getStats();
-//			System.out.println("Neutres: " + stats[0] + " - Infectés: " + stats[1] + " - Patchés: " + stats[2]);
-//			logCom.add(stats);
-//		}
-//		String file_name = "./stats/stats_"
-//				+ new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + ".log";
-//		PrintWriter pw = null;
-//		try {
-//			pw = new PrintWriter(new FileWriter(file_name, true));
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
-//		pw.println("n\ti\tp");
-//		for (int[] i : logCom)
-//			pw.println(i[0] + "\t" + i[1] + "\t" + i[2]);
-//		pw.close();
+//		NetworkDisplay nd = new NetworkDisplay(n, "Affichage de l'évolution de l'infection", 8);
+//		nd.display();
+		ArrayList<int[]> logCom = new ArrayList<>();
+		int[] stats = n.getStats();
+		logCom.add(stats);
+		int cpt = 0;
+		while(stats[0]!= 0) {
+			n.batchVirusPatch();
+			stats = n.getStats();
+			System.out.println("Neutres: " + stats[0] + " - Infectés: " + stats[1] + " - Patchés: " + stats[2]);
+			logCom.add(stats);
+			cpt++;
+		}
+		System.out.println(cpt);
+		String file_name = "./stats/stats_"
+				+ new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(Calendar.getInstance().getTime()) + ".log";
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(new FileWriter(file_name, true));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		pw.println("n\ti\tp");
+		for (int[] i : logCom)
+			pw.println(i[0] + "\t" + i[1] + "\t" + i[2]);
+		pw.close();
 	}
 }
