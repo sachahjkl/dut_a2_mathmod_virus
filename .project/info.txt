@@ -1,0 +1,3 @@
+name=dut_a2_mathmod_virus
+description=Projet propagation virus
+Swing
